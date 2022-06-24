@@ -2,7 +2,7 @@
 {
   public abstract class Payment
   {
-    public string Number { get; set; } = string.Empty;
+    public string Number { get; set; }
 
     public DateTime PaidDate { get; set; }
 
@@ -12,33 +12,25 @@
 
     public decimal TotalPaid { get; set; }
 
-    public string OwnerPayer { get; set; } = string.Empty;
+    public string OwnerPayer { get; set; }
 
-    public string Document { get; set; } = string.Empty;
+    public string Document { get; set; }
 
-    public string Address { get; set; } = string.Empty;
+    public string Address { get; set; }
 
-    public string Email { get; set; } = string.Empty;
-  }
+    public string Email { get; set; }
 
-  public class BoletoPayment : Payment
-  {
-    public string BarCode { get; set; } = string.Empty;
-
-    public string BoletoNumber { get; set; } = string.Empty;
-  }
-
-  public class CreditCardPayment : Payment
-  {
-    public string CardHolderName { get; set; } = string.Empty;
-
-    public string CardNumber { get; set; } = string.Empty;
-
-    public string LastTransactionNumber { get; set; } = string.Empty;
-  }
-
-  public class PayPalPayment : Payment
-  {
-    public string TransactionCode { get; set; } = string.Empty;
+    protected Payment(DateTime paidDate, DateTime expireDate, decimal total, decimal totalPaid, string ownerPayer, string document, string address, string email)
+    {
+      Number = Guid.NewGuid().ToString().Replace("-", string.Empty).Substring(0, 10).ToUpper();
+      PaidDate = paidDate;
+      ExpireDate = expireDate;
+      Total = total;
+      TotalPaid = totalPaid;
+      OwnerPayer = ownerPayer;
+      Document = document;
+      Address = address;
+      Email = email;
+    }
   }
 }
