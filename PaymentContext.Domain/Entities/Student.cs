@@ -1,25 +1,24 @@
-﻿namespace PaymentContext.Domain.Entities
+﻿using PaymentContext.Domain.ValueObjects;
+
+namespace PaymentContext.Domain.Entities
 {
   public class Student
   {
     private readonly IList<Subscription> _subscriptions;
 
-    public string FirstName { get; set; }
+    public Name Name { get; set; }
 
-    public string LastName { get; set; }
+    public Document Document { get; set; }
 
-    public string Document { get; set; }
-
-    public string Email { get; set; }
+    public Email Email { get; set; }
 
 #pragma warning disable S2365 // Properties should not make collection or array copies
     public IReadOnlyCollection<Subscription> Subscriptions => _subscriptions.ToList();
 #pragma warning restore S2365 // Properties should not make collection or array copies
 
-    public Student(string firstName, string lastName, string document, string email)
+    public Student(Name name, Document document, Email email)
     {
-      FirstName = firstName;
-      LastName = lastName;
+      Name = name;
       Document = document;
       Email = email;
       _subscriptions = new List<Subscription>();
