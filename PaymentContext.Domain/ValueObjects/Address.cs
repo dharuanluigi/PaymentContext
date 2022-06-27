@@ -1,6 +1,8 @@
-﻿namespace PaymentContext.Domain.ValueObjects
+﻿using PaymentContext.Shared.ValueObjects;
+
+namespace PaymentContext.Domain.ValueObjects
 {
-  public class Address
+  public class Address : ValueObject
   {
     public string Country { get; }
     public string State { get; }
