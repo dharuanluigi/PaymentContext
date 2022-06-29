@@ -1,8 +1,9 @@
 ﻿using PaymentContext.Domain.ValueObjects;
+using PaymentContext.Shared.Entities;
 
 namespace PaymentContext.Domain.Entities
 {
-  public class Student
+  public class Student : Entity
   {
     private readonly IList<Subscription> _subscriptions;
 
@@ -22,6 +23,8 @@ namespace PaymentContext.Domain.Entities
       Document = document;
       Email = email;
       _subscriptions = new List<Subscription>();
+
+      AddNotifications(name, document, email);
     }
 
     public void AddSubscription(Subscription subscription)

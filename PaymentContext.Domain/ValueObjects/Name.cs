@@ -1,4 +1,5 @@
-﻿using PaymentContext.Shared.ValueObjects;
+﻿using Flunt.Validations;
+using PaymentContext.Shared.ValueObjects;
 
 namespace PaymentContext.Domain.ValueObjects
 {
@@ -12,6 +13,12 @@ namespace PaymentContext.Domain.ValueObjects
     {
       FirstName = firstName;
       LastName = lastName;
+
+      AddNotifications(
+        new Contract<string>()
+            .Requires()
+            .IsNullOrWhiteSpace(firstName, "Name.FirstName", "Name must be not empty.")
+        );
     }
   }
 }
